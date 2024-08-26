@@ -1,0 +1,51 @@
+services:
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: "rabbitmq"
+    ports:
+      - 5672:5672
+      - 15672:15672
+    volumes:
+      - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
+      - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
+  backend:
+    ports:
+      - 3000:3000
+    build:
+      dockerfile: Dockerfile
+      context: ./sum-app-api
+    volumes:
+      - /app/node_modules
+      - ./sum-app-api:/app
+    environment:
+      - RMQ_URI= amqp://172.18.0.1:5672
+      - MONGODB_CLUSTER_NAME= BaseCluster
+      - MONGODB_USERNAME= chrischloe
+      - MONGODB_PASSWORD= sumtest
+  frontend:
+    ports:
+      - 80:80
+    build:
+      dockerfile: Dockerfile
+      context: ./sum-app-ui
+    depends_on:
+      - backend
+
+    volumes:
+      - /app/node_modules
+      - ./sum-app-ui:/app
+  worker:
+    build:
+      dockerfile: Dockerfile
+      context: ./worker
+    restart: on-failure
+    depends_on:
+      - rabbitmq
+    environment:
+      - RMQ_URI=amqp://172.18.0.1:5672
+      - MONGODB_CLUSTER_NAME= BaseCluster
+      - MONGODB_USERNAME= chrischloe
+      - MONGODB_PASSWORD= sumtest
+    volumes:
+      - /app/node_modules
+      - ./worker:/app

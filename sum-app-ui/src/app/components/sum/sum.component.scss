@@ -1,0 +1,27 @@
+form {
+  display: flex;
+  justify-content: space-between;
+  gap: 2em;
+}
+
+.main {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn {
+  height: 4em;
+  width: 8em;
+}
+
+.btn-check {
+  height: 4em;
+  width: 14em;
+}
+
+.id-field {
+  width: 23em;
+}

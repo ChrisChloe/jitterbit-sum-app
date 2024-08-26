@@ -1,0 +1,20 @@
+<h1 mat-dialog-title>{{ data.title }}</h1>
+
+<div *ngIf="data.type === 'id'" mat-dialog-content class="info">
+  <span>{{data.sumId}}</span>
+  <button mat-raised-button [cdkCopyToClipboard]="data.sumId">
+    Copy
+    <mat-icon>content_copy</mat-icon>
+  </button>
+</div>
+
+<div *ngIf="data.type === 'result'" mat-dialog-content class="info result">
+  <span>First Number: {{data.sumObject?.number1}}</span>
+  <span>Second Number: {{data.sumObject?.number2}}</span>
+  <span>Status: {{data.sumObject?.calculationStatus}}</span>
+  <span>Sum Result: {{data.sumObject?.result}}</span>
+</div>
+
+<div mat-dialog-actions class="actions">
+  <button class="btn-ok" mat-raised-button cdkFocusInitial (click)="closeDialog()">Ok</button>
+</div>

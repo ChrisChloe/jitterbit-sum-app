@@ -1,0 +1,31 @@
+<div class="main">
+  <h1>Simple Sum App</h1>
+  <form>
+    <mat-form-field appearance="outline">
+      <mat-label>First Number</mat-label>
+      <input matInput [formControl]="number1" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Second Number</mat-label>
+      <input matInput [formControl]="number2" />
+    </mat-form-field>
+
+    <button type="button" class="btn" mat-flat-button (click)="sendNumbers()">
+      Send
+      <mat-icon>check</mat-icon>
+    </button>
+  </form>
+
+  <form>
+    <mat-form-field class="id-field" appearance="outline">
+      <mat-label>Sum ID</mat-label>
+      <input matInput [formControl]="sumId" />
+    </mat-form-field>
+
+    <button type="button" class="btn-check" mat-flat-button (click)="getSumInfo()">
+      Check Result
+      <mat-icon>check</mat-icon>
+    </button>
+  </form>
+</div>
