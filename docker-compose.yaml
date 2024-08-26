@@ -19,9 +19,7 @@ services:
       - ./sum-app-api:/app
     environment:
       - RMQ_URI= amqp://172.18.0.1:5672
-      - MONGODB_CLUSTER_NAME= BaseCluster
-      - MONGODB_USERNAME= chrischloe
-      - MONGODB_PASSWORD= sumtest
+      - DB_URI=mongodb+srv://chrischloe:sumtest@basecluster.hck2o.mongodb.net/?retryWrites=true&w=majority&appName=BaseCluster
   frontend:
     ports:
       - 80:80
@@ -43,9 +41,7 @@ services:
       - rabbitmq
     environment:
       - RMQ_URI=amqp://172.18.0.1:5672
-      - MONGODB_CLUSTER_NAME= BaseCluster
-      - MONGODB_USERNAME= chrischloe
-      - MONGODB_PASSWORD= sumtest
+      - DB_URI=mongodb+srv://chrischloe:sumtest@basecluster.hck2o.mongodb.net/?retryWrites=true&w=majority&appName=BaseCluster
     volumes:
       - /app/node_modules
       - ./worker:/app

@@ -3,7 +3,7 @@ import { MongoClient, ObjectId } from "mongodb";
 import { config } from "dotenv";
 
 config();
-const amqpURI = process.env.RMQ_URI;
+const amqpURI = process.env.RMQ_URI
 
 amqp.connect(amqpURI, function (err, conn) {
   conn.createChannel(function (err, ch) {
@@ -31,7 +31,7 @@ function calcSum(sumObj) {
 }
 
 export async function updateResult(sumResult, id) {
-  const uri = `mongodb+srv://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}.hck2o.mongodb.net/?retryWrites=true&w=majority&appName=${process.env.MONGODB_CLUSTER_NAME}`;
+  const uri = process.env.DB_URI;
   let mongoClient;
 
   try {

@@ -45,7 +45,7 @@ export async function updateSumObject(collection, name, updatedFields) {
 }
 
 export async function calcAsync(sumObject) {
-  const uri = `mongodb+srv://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}.hck2o.mongodb.net/?retryWrites=true&w=majority&appName=${process.env.MONGODB_CLUSTER_NAME}`;
+  const uri = process.env.DB_URI;
   let mongoClient;
 
   try {
@@ -53,8 +53,8 @@ export async function calcAsync(sumObject) {
     const db = mongoClient.db("operations");
     const collection = db.collection("sum");
     return await createSumObject(collection, sumObject);
-  } catch {
-    console.error("calcAsync error");
+  } catch (error) {
+    console.error("calcAsync error: " + error);
   } finally {
     await mongoClient.close();
   }
@@ -69,16 +69,13 @@ export async function getResults(id) {
     const db = mongoClient.db("operations");
     const collection = db.collection("sum");
 
-    return await findSumById(collection, id).then(
-      (response) => {
-        return response;
-      },
-      (err) => {
-        console.log(err);
-      }
-    );
-  } catch {
-    console.error("getResults error");
+    return await findSumById(collection, id).then(response => {
+      return response
+    }, err => {
+      console.log(err)
+    });
+  } catch (error) {
+    console.error("getResults error: " + error);
   } finally {
     await mongoClient.close();
   }

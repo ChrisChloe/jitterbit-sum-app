@@ -7,6 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 import { SumOperationService } from '../../services/sum-operation/sum-operation.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from '../dialog/dialog/dialog.component';
+import { NumberDirective } from '../../directives/numbers-only.directive';
 
 @Component({
   selector: 'app-sum',
@@ -17,6 +18,7 @@ import { DialogComponent } from '../dialog/dialog/dialog.component';
     MatButtonModule,
     MatIconModule,
     MatInputModule,
+    NumberDirective
   ],
   templateUrl: './sum.component.html',
   styleUrl: './sum.component.scss',

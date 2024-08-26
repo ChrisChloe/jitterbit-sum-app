@@ -3,12 +3,12 @@
   <form>
     <mat-form-field appearance="outline">
       <mat-label>First Number</mat-label>
-      <input matInput [formControl]="number1" />
+      <input matInput [formControl]="number1" numbersOnly/>
     </mat-form-field>
 
     <mat-form-field appearance="outline">
       <mat-label>Second Number</mat-label>
-      <input matInput [formControl]="number2" />
+      <input matInput [formControl]="number2" numbersOnly/>
     </mat-form-field>
 
     <button type="button" class="btn" mat-flat-button (click)="sendNumbers()">

@@ -26,8 +26,14 @@ function sendToWorker(data) {
         ch.assertQueue(q, { durable: false });     
         ch.sendToQueue(q, new Buffer(data));
         console.log(" [x] Sent %s", data);
+        if (err) {
+          console.error(err)
+        }
     });
     setTimeout(function () { conn.close(); }, 500);
+    if (err) {
+      console.error(err)
+    }
   });
 }
 
